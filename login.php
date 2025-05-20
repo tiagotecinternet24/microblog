@@ -2,6 +2,7 @@
 
 use Microblog\Helpers\Utils;
 use Microblog\Helpers\Validacoes;
+use Microblog\Models\Usuario;
 use Microblog\Services\UsuarioServico;
 
 require_once "vendor/autoload.php";
@@ -35,7 +36,19 @@ if (isset($_POST['entrar'])) {
         $usuarioServico = new UsuarioServico();
         $usuario = $usuarioServico->buscarPorEmail($email);
         
-        
+        // Se não existir usuário com o e-mail informado,
+        // mantem na página login e apresenta mensagem
+        if(!$usuario){
+            header("location:login.php?dados_incorretos");
+            exit;
+        }
+
+        // Se o usuário foi encontrado, verifica a senha digitada
+        if($usuario && password_verify($senha, $usuario['senha'])){
+            echo "senhas iguais, pode logar!";
+        } else {
+            echo "senhas diferentes, vaza daqui!";
+        }
 
     } catch (Throwable $erro) {
         Utils::registrarLog($erro);
