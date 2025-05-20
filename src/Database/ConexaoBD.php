@@ -15,7 +15,7 @@ abstract class ConexaoBD
     private static string $servidor = "localhost";
     private static string $usuario = "root";
     private static string $senha = "";
-    private static string $banco = "microblog_2025";
+    private static string $banco = "microblog";
 
     public static function getConexao(): PDO
     {
