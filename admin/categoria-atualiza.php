@@ -1,10 +1,13 @@
 <?php
 require_once "../vendor/autoload.php";
 
+use Microblog\Auth\ControleDeAcesso;
 use Microblog\Helpers\Utils;
 use Microblog\Helpers\Validacoes;
 use Microblog\Models\Categoria;
 use Microblog\Services\CategoriaServico;
+
+ControleDeAcesso::exigirAdmin();
 
 $categoriaServico = new CategoriaServico();
 

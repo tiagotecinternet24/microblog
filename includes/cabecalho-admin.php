@@ -50,12 +50,14 @@ $pagina = basename($_SERVER['PHP_SELF']);
                             <a class="nav-link" href="noticias.php">Notícias</a>
                         </li>
 
+                        <?php if($_SESSION['tipo'] === 'admin'){ ?>
                         <li class="nav-item">
                             <a class="nav-link" href="categorias.php">Categorias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="usuarios.php">Usuários</a>
                         </li>
+                        <?php } ?>
                         
                         <li class="nav-item">
                             <a class="nav-link" href="../index.php" target="_blank">Área pública</a>

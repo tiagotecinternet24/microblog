@@ -1,7 +1,10 @@
 <?php 
 require_once "../vendor/autoload.php";
 
+use Microblog\Auth\ControleDeAcesso;
 use Microblog\Services\CategoriaServico;
+
+ControleDeAcesso::exigirAdmin();
 
 $categoriaServico = new CategoriaServico();
 $listaDeCategorias = $categoriaServico->listarTodos();

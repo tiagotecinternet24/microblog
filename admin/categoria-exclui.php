@@ -6,6 +6,7 @@ use Microblog\Helpers\Utils;
 use Microblog\Services\CategoriaServico;
 
 ControleDeAcesso::exigirLogin();
+ControleDeAcesso::exigirAdmin();
 
 $categoriaServico = new CategoriaServico();
 
