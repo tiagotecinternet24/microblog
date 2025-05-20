@@ -1,0 +1,6 @@
+
+[2025-05-20 08:13:33]
+Arquivo: C:\xampp\htdocs\microblog\src\Database\ConexaoBD.php
+Linha: 24
+Mensagem: SQLSTATE[HY000] [2002] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
