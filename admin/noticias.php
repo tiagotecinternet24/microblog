@@ -1,13 +1,15 @@
 <?php
 require_once "../vendor/autoload.php";
 
+use Microblog\Auth\ControleDeAcesso;
 use Microblog\Enums\TipoUsuario;
 use Microblog\Helpers\Utils;
 use Microblog\Services\NoticiaServico;
 
 // Configurar após programar Controle de Acesso
-$tipoUsuario = TipoUsuario::from('admin'); 
-$idUsuario = 1;
+ControleDeAcesso::exigirLogin();
+$tipoUsuario = TipoUsuario::from($_SESSION['tipo']);
+$idUsuario = $_SESSION['id'];
 
 $noticiaServico = new NoticiaServico();
 $listaDeNoticias = $noticiaServico->listarTodos($tipoUsuario, $idUsuario);
@@ -39,7 +41,11 @@ require_once "../includes/cabecalho-admin.php";
 					<tr>
 						<th>Título</th>
 						<th>Data</th>
+
+						<?php if($_SESSION['tipo'] === 'admin') { ?>
 						<th>Autor</th>
+						<?php } ?>
+
 						<th class="text-center">Destaque</th>
 						<th class="text-center" colspan="2">Operações</th>
 					</tr>
@@ -51,7 +57,9 @@ require_once "../includes/cabecalho-admin.php";
 						<tr>
 							<td> <?= $itemNoticia['titulo'] ?> </td>
 							<td> <?= Utils::formataData($itemNoticia['data']) ?> </td>
+							<?php if($_SESSION['tipo'] === 'admin') { ?> 
 							<td> <?= $itemNoticia['autor'] ?> </td>
+							<?php } ?>
 							<td class="text-center"><?= $itemNoticia['destaque'] ?></td>
 
 							<td class="text-center">
