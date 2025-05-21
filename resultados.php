@@ -5,7 +5,7 @@ use Microblog\Services\NoticiaServico;
 require_once "vendor/autoload.php";
 
 $noticiaServico = new NoticiaServico();
-$resultados = $noticiaServico->buscar($_POST["busca"] ?? '');
+$resultados = $noticiaServico->buscar($_POST["busca"] ?? ''); // visual
 $quantidade = count($resultados);
 
 if($quantidade > 0){
