@@ -1,6 +1,7 @@
 <?php
 require_once "../vendor/autoload.php";
 
+use Microblog\Auth\ControleDeAcesso;
 use Microblog\Enums\Destaque;
 use Microblog\Enums\TipoUsuario;
 use Microblog\Helpers\Utils;
@@ -13,8 +14,9 @@ $idNoticia = Utils::sanitizar($_GET["id"], "inteiro");
 Utils::verificarId($idNoticia);
 
 // Configurar após programar Controle de Acesso
-$idUsuario = 1;
-$tipoUsuario = TipoUsuario::from('admin ou editor');
+ControleDeAcesso::exigirLogin();
+$idUsuario = $_SESSION['id'];
+$tipoUsuario = TipoUsuario::from($_SESSION['tipo']);
 
 
 $mensagemErro = "";
